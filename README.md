@@ -22,7 +22,7 @@ This project is an e-commerce website for grocery shopping, It allows users to c
 
 ## Technologies Used
 
-- `Javascript`
+
 - `React`
 - `Redux`
 - `Chakra UI`
