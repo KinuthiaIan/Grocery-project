@@ -8,16 +8,18 @@ import {
 } from "@chakra-ui/react";
 import React, { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
+
 const Sidebar = () => {
-  // console.log(search,"is from search")
   const [searchParams, setSearchParams] = useSearchParams("");
   const initialVeg = searchParams.getAll("category");
   const [category, setCategory] = useState(initialVeg || []);
   const initialSort = searchParams.get("order");
   const [order, setOrder] = useState(initialSort || "");
+
   const handleSort = (e) => {
     setOrder(e.target.value);
   };
+
   function handleVeg(e) {
     let newVeg = [...category];
     newVeg.includes("vegetable")
@@ -25,11 +27,13 @@ const Sidebar = () => {
       : newVeg.push(e.target.value);
     setCategory(newVeg);
   }
+
   useEffect(() => {
-    let param = { category};
+    let param = { category };
     order && (param.order = order);
     setSearchParams(param);
   }, [category, order]);
+
   let handleFruit = (e) => {
     let newFruit = [...category];
     newFruit.includes("fruit")
@@ -37,6 +41,7 @@ const Sidebar = () => {
       : newFruit.push(e.target.value);
     setCategory(newFruit);
   };
+
   const handleDairy = (e) => {
     let newDairy = [...category];
     newDairy.includes("Dairy")
@@ -44,6 +49,7 @@ const Sidebar = () => {
       : newDairy.push(e.target.value);
     setCategory(newDairy);
   };
+
   const handleBakery = (e) => {
     let newBakery = [...category];
     newBakery.includes("Bakery")
@@ -51,8 +57,9 @@ const Sidebar = () => {
       : newBakery.push(e.target.value);
     setCategory(newBakery);
   };
+
   return (
-    <Box>
+    <Box css={{ "@media (max-width: 768px)": { display: "none" } }}>
       <Box>
         <Stack spacing={5} direction="column">
           <FormLabel>Category</FormLabel>
@@ -90,22 +97,14 @@ const Sidebar = () => {
           </Checkbox>
         </Stack>
       </Box>
-      <Box mt={"10px"}  onChange={handleSort}>
+      <Box mt={"10px"} onChange={handleSort}>
         <RadioGroup defaultValue={order}>
           <FormLabel>Sort By Price</FormLabel>
           <Stack spacing={5} direction="column">
-            <Radio
-              colorScheme="green"
-              value="asc"
-              defaultChecked={order==="asc"}
-            >
+            <Radio colorScheme="green" value="asc" defaultChecked={order === "asc"}>
               Asc
             </Radio>
-            <Radio
-              colorScheme="green"
-              value="desc"
-              defaultChecked={order === "desc"}
-            >
+            <Radio colorScheme="green" value="desc" defaultChecked={order === "desc"}>
               Desc
             </Radio>
           </Stack>
