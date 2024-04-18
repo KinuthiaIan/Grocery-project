@@ -60,7 +60,12 @@ const Navbar = () => {
           />
         </Box>
         <Spacer />
-        <Box display={{ base: "none", md: "block" }} width="40%" bg={"white"}>
+        <Box
+          display={{ base: "none", md: "block" }}
+          width="40%"
+          bg={"white"}
+          _hover={{ boxShadow: "0px 0px 10px rgba(0, 0, 0, 0.1)" }}
+        >
           <Input placeholder="Search" />
         </Box>
         <Spacer />
@@ -97,13 +102,18 @@ const Navbar = () => {
               </MenuList>
             </Menu>
             <HStack spacing={8}>
-              <Box as={Link} to="/">
+              <Box as={Link} to="/" style={{ border: '1px solid transparent', borderRadius: '4px', padding: '5px', transition: 'all 0.3s' }} _hover={{ borderColor: 'blue.500', backgroundColor: 'blue.50' }}>
                 Home
               </Box>
               <Box as={Link} to="/addToCart" fontSize="2xl">
-                <FaShoppingCart size={30} />
+                <Box
+                  style={{ border: '1px solid transparent', borderRadius: '4px', padding: '5px', transition: 'all 0.3s' }}
+                  _hover={{ borderColor: 'blue.500', backgroundColor: 'blue.50' }}
+                >
+                  <FaShoppingCart size={30} />
+                </Box>
               </Box>
-              <Box as={Link} to="/signin">
+              <Box as={Link} to="/signin" style={{ border: '1px solid transparent', borderRadius: '4px', padding: '5px', transition: 'all 0.3s' }} _hover={{ borderColor: 'blue.500', backgroundColor: 'blue.50' }}>
                 Admin
               </Box>
               <Menu>
@@ -123,7 +133,7 @@ const Navbar = () => {
                   </MenuList>
                 )}
               </Menu>
-              <Box>
+              <Box style={{ border: '1px solid transparent', borderRadius: '4px', padding: '5px', transition: 'all 0.3s', }} _hover={{ borderColor: 'blue.500', backgroundColor: 'blue.50' }}>
                 <UserLogo />
               </Box>
             </HStack>
@@ -154,13 +164,18 @@ const Navbar = () => {
         >
           <Flex height="100%" alignItems="center" flexDirection="column">
             <HStack spacing={4} flexWrap="wrap" fontSize="xl">
-              <Box as={Link} to="/">
+              <Box as={Link} to="/" style={{ border: '1px solid transparent', borderRadius: '4px', padding: '5px', transition: 'all 0.3s' }} _hover={{ borderColor: 'blue.500', backgroundColor: 'blue.50' }}>
                 Home
               </Box>
               <Box as={Link} to="/addToCart" fontSize="2xl">
-                <FaShoppingCart size={30} />
+                <Box
+                  style={{ border: '1px solid transparent', borderRadius: '4px', padding: '5px', transition: 'all 0.3s' }}
+                  _hover={{ borderColor: 'blue.500', backgroundColor: 'blue.50' }}
+                >
+                  <FaShoppingCart size={30} />
+                </Box>
               </Box>
-              <Box as={Link} to="/signin">
+              <Box as={Link} to="/signin" style={{ border: '1px solid transparent', borderRadius: '4px', padding: '5px', transition: 'all 0.3s' }} _hover={{ borderColor: 'blue.500', backgroundColor: 'blue.50' }}>
                 Admin
               </Box>
               <Menu>
@@ -180,7 +195,7 @@ const Navbar = () => {
                   </MenuList>
                 )}
               </Menu>
-              <Box>
+              <Box style={{ border: '1px solid transparent', borderRadius: '4px', padding: '5px', transition: 'all 0.3s', }} _hover={{ borderColor: 'blue.500', backgroundColor: 'blue.50' }}>
                 <UserLogo />
               </Box>
             </HStack>
