@@ -19,7 +19,7 @@
     "react-icons": "^4.9.0",
     "react-redux": "^8.1.0",
     "react-router-dom": "^6.3.0",
-    "react-scripts": "5.0.1",
+    "react-scripts": "^5.0.1",
     "react-toastify": "^9.1.3",
     "redux": "^4.2.1",
     "redux-thunk": "^2.4.2",
@@ -52,5 +52,10 @@
   },
   "devDependencies": {
     "@babel/plugin-proposal-private-property-in-object": "^7.21.11"
-  }
+  },
+  "description": "Welcome to our GitHub repository! Here, you'll find the code for our innovative groceries e-commerce website, `Grocery Paradise` designed to provide a seamless and convenient shopping experience for all your grocery needs. Join us as we revolutionize the way you shop for groceries online. 🚀🎯",
+  "main": "index.js",
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
 }
