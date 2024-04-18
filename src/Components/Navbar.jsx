@@ -1,6 +1,5 @@
-import React, { useEffect } from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
-
 import {
   Box,
   Flex,
@@ -13,6 +12,7 @@ import {
   MenuButton,
   MenuList,
   MenuItem,
+  Button,
 } from "@chakra-ui/react";
 import { HamburgerIcon, CloseIcon } from "@chakra-ui/icons";
 import { FaShoppingCart } from "react-icons/fa";
@@ -21,19 +21,33 @@ import Logo from "../Assets/Logo.png";
 
 const Navbar = () => {
   const { isOpen, onToggle, onClose } = useDisclosure();
+  const [productName, setProductName] = useState("");
+  const [productPrice, setProductPrice] = useState("");
+  const [productImage, setProductImage] = useState(null);
 
-  useEffect(() => {
-    const handleResize = () => {
-      if (window.innerWidth >= 768) {
-        onClose();
-      }
-    };
-    window.addEventListener("resize", handleResize);
+  const handleProductNameChange = (e) => {
+    setProductName(e.target.value);
+  };
 
-    return () => {
-      window.removeEventListener("resize", handleResize);
-    };
-  }, [onClose]);
+  const handleProductPriceChange = (e) => {
+    setProductPrice(e.target.value);
+  };
+
+  const handleImageUpload = (e) => {
+    const file = e.target.files[0];
+    setProductImage(file);
+  };
+
+  const handleSubmit = () => {
+    // Handle form submission logic here, e.g., send data to backend API
+    console.log("Product Name:", productName);
+    console.log("Product Price:", productPrice);
+    console.log("Product Image:", productImage);
+    // Reset form fields after submission
+    setProductName("");
+    setProductPrice("");
+    setProductImage(null);
+  };
 
   return (
     <Box position="fixed" top={0} left={0} right={0} zIndex={999} px={0} py={0}>
@@ -47,7 +61,7 @@ const Navbar = () => {
         </Box>
         <Spacer />
         <Box display={{ base: "none", md: "block" }} width="40%" bg={"white"}>
-          <Input placeholder="Search"  />
+          <Input placeholder="Search" />
         </Box>
         <Spacer />
         <Box
@@ -92,6 +106,23 @@ const Navbar = () => {
               <Box as={Link} to="/signin">
                 Admin
               </Box>
+              <Menu>
+                <MenuButton
+                  as={Button}
+                  variant="ghost"
+                  onClick={onToggle}
+                >
+                  Add Product
+                </MenuButton>
+                {isOpen && (
+                  <MenuList>
+                    <Input placeholder="Product Name" value={productName} onChange={handleProductNameChange} />
+                    <Input placeholder="Product Price" value={productPrice} onChange={handleProductPriceChange} />
+                    <Input type="file" accept="image/*" onChange={handleImageUpload} />
+                    <Button onClick={handleSubmit}>Submit</Button>
+                  </MenuList>
+                )}
+              </Menu>
               <Box>
                 <UserLogo />
               </Box>
@@ -132,40 +163,27 @@ const Navbar = () => {
               <Box as={Link} to="/signin">
                 Admin
               </Box>
+              <Menu>
+                <MenuButton
+                  as={Button}
+                  variant="ghost"
+                  onClick={onToggle}
+                >
+                  Add Product
+                </MenuButton>
+                {isOpen && (
+                  <MenuList>
+                    <Input placeholder="Product Name" value={productName} onChange={handleProductNameChange} />
+                    <Input placeholder="Product Price" value={productPrice} onChange={handleProductPriceChange} />
+                    <Input type="file" accept="image/*" onChange={handleImageUpload} />
+                    <Button onClick={handleSubmit}>Submit</Button>
+                  </MenuList>
+                )}
+              </Menu>
               <Box>
                 <UserLogo />
               </Box>
             </HStack>
-            <Box mt={4} width="80%">
-              <Input placeholder="Search" />
-            </Box>
-            <Menu>
-              <MenuButton
-                as={Box}
-                px={4}
-                py={2}
-                transition="all 0.2s"
-                borderRadius="md"
-                borderWidth="1px"
-                _hover={{ bg: "gray.200" }}
-              >
-                Shop by Categories
-              </MenuButton>
-              <MenuList>
-                <MenuItem as={Link} to="/products">
-                  Vegetables
-                </MenuItem>
-                <MenuItem as={Link} to="/products">
-                  Fruits
-                </MenuItem>
-                <MenuItem as={Link} to="/products">
-                  Dairy
-                </MenuItem>
-                <MenuItem as={Link} to="/products">
-                  Bakery
-                </MenuItem>
-              </MenuList>
-            </Menu>
           </Flex>
         </Box>
       )}
