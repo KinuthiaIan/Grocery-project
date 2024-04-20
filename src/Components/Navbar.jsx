@@ -113,9 +113,6 @@ const Navbar = () => {
                   <FaShoppingCart size={30} />
                 </Box>
               </Box>
-              <Box as={Link} to="/signin" style={{ border: '1px solid transparent', borderRadius: '4px', padding: '5px', transition: 'all 0.3s' }} _hover={{ borderColor: 'blue.500', backgroundColor: 'blue.50' }}>
-                Admin
-              </Box>
               <Menu>
                 <MenuButton
                   as={Button}
