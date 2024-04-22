@@ -99,7 +99,6 @@ const Sidebar = () => {
       </Box>
       <Box mt={"10px"} onChange={handleSort}>
         <RadioGroup defaultValue={order}>
-          <FormLabel>Sort By Price</FormLabel>
           <Stack spacing={5} direction="column">
             <Radio colorScheme="green" value="asc" defaultChecked={order === "asc"}>
               Asc
