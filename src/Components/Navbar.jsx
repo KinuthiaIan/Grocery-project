@@ -20,33 +20,42 @@ import UserLogo from "./UserLogo";
 import Logo from "../Assets/Logo.png";
 
 const Navbar = () => {
-  const { isOpen, onToggle, onClose } = useDisclosure();
-  const [productName, setProductName] = useState("");
-  const [productPrice, setProductPrice] = useState("");
-  const [productImage, setProductImage] = useState(null);
+  const { isOpen, onToggle } = useDisclosure();
+  const [product, setProduct] = useState({
+    name: "",
+    category: "",
+    image: null,
+    price: "",
+  });
 
-  const handleProductNameChange = (e) => {
-    setProductName(e.target.value);
-  };
-
-  const handleProductPriceChange = (e) => {
-    setProductPrice(e.target.value);
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setProduct((prevProduct) => ({
+      ...prevProduct,
+      [name]: value,
+    }));
   };
 
   const handleImageUpload = (e) => {
     const file = e.target.files[0];
-    setProductImage(file);
+    setProduct((prevProduct) => ({
+      ...prevProduct,
+      image: file,
+    }));
   };
 
   const handleSubmit = () => {
     // Handle form submission logic here, e.g., send data to backend API
-    console.log("Product Name:", productName);
-    console.log("Product Price:", productPrice);
-    console.log("Product Image:", productImage);
+    console.log("Product:", product);
     // Reset form fields after submission
-    setProductName("");
-    setProductPrice("");
-    setProductImage(null);
+    setProduct({
+      name: "",
+      category: "",
+      image: null,
+      price: "",
+    });
+    // Show success message
+    window.alert("Your product has been successfully added!");
   };
 
   return (
@@ -123,9 +132,10 @@ const Navbar = () => {
                 </MenuButton>
                 {isOpen && (
                   <MenuList>
-                    <Input placeholder="Product Name" value={productName} onChange={handleProductNameChange} />
-                    <Input placeholder="Product Price" value={productPrice} onChange={handleProductPriceChange} />
+                    <Input placeholder="Product Name" name="name" value={product.name} onChange={handleInputChange} />
+                    <Input placeholder="Product Category" name="category" value={product.category} onChange={handleInputChange} />
                     <Input type="file" accept="image/*" onChange={handleImageUpload} />
+                    <Input placeholder="Product Price" name="price" value={product.price} onChange={handleInputChange} />
                     <Button onClick={handleSubmit}>Submit</Button>
                   </MenuList>
                 )}
@@ -185,9 +195,10 @@ const Navbar = () => {
                 </MenuButton>
                 {isOpen && (
                   <MenuList>
-                    <Input placeholder="Product Name" value={productName} onChange={handleProductNameChange} />
-                    <Input placeholder="Product Price" value={productPrice} onChange={handleProductPriceChange} />
+                    <Input placeholder="Product Name" name="name" value={product.name} onChange={handleInputChange} />
+                    <Input placeholder="Product Category" name="category" value={product.category} onChange={handleInputChange} />
                     <Input type="file" accept="image/*" onChange={handleImageUpload} />
+                    <Input placeholder="Product Price" name="price" value={product.price} onChange={handleInputChange} />
                     <Button onClick={handleSubmit}>Submit</Button>
                   </MenuList>
                 )}
